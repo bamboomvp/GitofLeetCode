@@ -1,7 +1,6 @@
 package baodavi;
 
 public class AddBinary {
-	public static final String s;
     public String addBinary(String a, String b) {
         StringBuilder sb = new StringBuilder();
 
@@ -53,9 +52,5 @@ public class AddBinary {
     }
     
     public static void main(){
-    	s = "abc";
-    	final String sb;
-    	sb = "abc";
-    	sb = "cde";
     }
 }

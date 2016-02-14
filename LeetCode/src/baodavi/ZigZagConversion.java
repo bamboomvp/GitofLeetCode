@@ -15,7 +15,7 @@ public class ZigZagConversion {
 
 		List<List<Character>> zigZagMagic = new ArrayList<>();
 		for (int i = 0; i < nRows; i++) {
-			zigZagMagic.add(new ArrayList<>());
+			zigZagMagic.add(new ArrayList<Character>());
 		}
 
 		int zigZagHead = 0;
