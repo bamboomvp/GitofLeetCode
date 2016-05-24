@@ -1,10 +1,9 @@
 package baodavi;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.PriorityQueue;
 
 /*
 Given a list of airline tickets represented by pairs of departure and arrival airports [from, to], reconstruct the itinerary in order. All of the tickets belong to a man who departs from JFK. Thus, the itinerary must begin with JFK.
@@ -24,42 +23,29 @@ Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it
 
 public class ReconstructItinerary {
 	
-	public List<String> findItinerarySolution(String[][] tickets) {
-		
+	HashMap<String, PriorityQueue<String>> map = new HashMap<String, PriorityQueue<String>>();
+	LinkedList<String> result = new LinkedList<String>();
+ 
+	public List<String> findItinerary(String[][] tickets) {
+		for (String[] ticket : tickets) {
+			if (!map.containsKey(ticket[0])) {
+				PriorityQueue<String> q = new PriorityQueue<String>();
+				map.put(ticket[0], q);
+			}
+			map.get(ticket[0]).offer(ticket[1]);
+		}
+ 
+		dfs("JFK");
+		return result;
 	}
-	
-    public List<String> findItinerary(String[][] tickets) {
-        Map<String, List<String>> ticketMap = new HashMap<>();
-        for(int i = 0; i < tickets.length; i++){
-        	if(ticketMap.containsKey(tickets[i][0])){
-        		ticketMap.get(tickets[i][0]).add(tickets[i][1]);
-        	}else{
-        		List<String> destinations = new ArrayList<>();
-        		destinations.add(tickets[i][1]);
-        		ticketMap.put(tickets[i][0], destinations);
-        	}
-        }
-        
-        List<String> res = new ArrayList<>();
-        String currLag = "JFK";
-        res.add(currLag);
-        while(true){
-        	if(ticketMap.containsKey(currLag)){
-        		List<String> destinations = ticketMap.get(currLag);
-        		Collections.sort(destinations);
-        		int ind = 0;
-        		while(res.contains(currLag) && ind < destinations.size()){
-        			currLag = destinations.get(ind);
-        			ind++;
-        		}
-        		if(ind >= destinations.size()){
-        			break;
-        		}
-        		res.add(currLag);
-        	}else{
-        		break;
-        	}
-        }
-        return res;
-    }
+ 
+	public void dfs(String s) {
+		PriorityQueue<String> q = map.get(s);
+ 
+		while (q != null && !q.isEmpty()) {
+			dfs(q.poll());
+		}
+ 
+		result.addFirst(s);
+	}
 }
