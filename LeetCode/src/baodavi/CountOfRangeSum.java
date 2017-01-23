@@ -15,6 +15,7 @@ The three ranges are : [0, 0], [2, 2], [0, 2] and their respective sums are: -2,
 
 public class CountOfRangeSum {
     public int countRangeSum(int[] nums, int lower, int upper) {
+		return upper;
         
     }
 }
