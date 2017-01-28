@@ -3,6 +3,7 @@ package baodavi;
 import java.util.HashMap;
 
 // Data structure design
+/* Test new commit from my MacPro 01/28 */
 public class AddAndSearchWord {
 	public class WordDictionary {
 		class TrieNode {
