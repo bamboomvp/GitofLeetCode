@@ -2,6 +2,7 @@ package baodavi;
 
 import java.util.HashMap;
 
+/* Test the Eclipse commit from Bamboo-PC 01/28 */
 // Data structure design
 public class AddAndSearchWord {
 	public class WordDictionary {
