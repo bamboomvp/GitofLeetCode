@@ -9,3 +9,6 @@ Welcome, bamboomvp! You have solved 102 / 324 problems.
 
 01/22/2017:
 Hey Man! R U Ready to rock it?
+
+08/27/2017:
+Don't give up, YET!!!
