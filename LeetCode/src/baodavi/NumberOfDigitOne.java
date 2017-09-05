@@ -1,7 +1,6 @@
 package baodavi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -22,6 +21,8 @@ Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
 */
 
 public class NumberOfDigitOne {
+	
+	// LOL, java 8 solution, so nice!
     public int countDigitOne(int n) {
         List<Character> wow = new ArrayList<>();
         for(int i = 1; i <= n; i++){
@@ -31,5 +32,16 @@ public class NumberOfDigitOne {
         }
         
         return (int) wow.stream().filter(c -> c == '1').count();
+    }
+    
+    // pure math
+    public int countDigitOneMath(int n) {
+    	int res = 0;
+    	for(long i = 1; i <= n; i *= 10){
+    		long divider = i * 10;
+    		res += (n / divider) * i;
+    		res += Math.min(Math.max(n % divider - i + 1, 0L), i);
+    	}
+    	return res;
     }
 }
