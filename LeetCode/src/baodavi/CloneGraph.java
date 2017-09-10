@@ -41,6 +41,7 @@ public class CloneGraph {
 	        		for(UndirectedGraphNode neighbor : curr.neighbors){
 	        			mapping.get(curr).neighbors.add(mapping.get(neighbor));
 	        			if(!visited.contains(neighbor)){
+	        				visited.add(neighbor); // special case, de-duplicate
 	        				bfs.offer(neighbor);
 	        			}
 	        		}
