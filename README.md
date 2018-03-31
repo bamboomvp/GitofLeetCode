@@ -12,3 +12,8 @@ Hey Man! R U Ready to rock it?
 
 08/27/2017:
 Don't give up, YET!!!
+
+<b>
+03/25/2018:
+365天倒数计划，去西雅图吧！！！不行就回国！！！
+</b>
