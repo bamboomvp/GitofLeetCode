@@ -26,7 +26,27 @@ public class CombinationSumII {
     	List<List<Integer>> res = new ArrayList<>();
     	Arrays.sort(candidates);
     	combinationSumHelper(candidates, target, 0, new ArrayList<Integer>(), res);
+    	combinationSumHelperUPDATED(candidates, target, 0, new ArrayList<Integer>(), res);
     	return res;
+    }
+    
+    private void combinationSumHelperUPDATED(int[] candidates, int remaining, int index, List<Integer> tmp, List<List<Integer>> res){
+    	if(remaining == 0){
+    		res.add(new ArrayList<>(tmp));
+    		return;
+    	}
+    	for(int i = index; i < candidates.length; i++){
+            if(i != index && candidates[i] == candidates[i - 1]){
+                continue;
+            }
+    		if(remaining - candidates[i] >= 0){
+    			tmp.add(candidates[i]);
+    			combinationSumHelperUPDATED(candidates, remaining  - candidates[i], i + 1, tmp, res);
+    			tmp.remove(tmp.size() - 1);
+    		}else{
+    			break;
+    		}
+    	}
     }
     
     private void combinationSumHelper(int[] candidates, int remaining, int index, List<Integer> tmp, List<List<Integer>> res){
