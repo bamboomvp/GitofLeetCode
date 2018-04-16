@@ -1,10 +1,12 @@
 package baodavi;
 
+import java.util.Stack;
+
 public class MaximalRectangle {
     public int maximalRectangle(char[][] matrix) {
         if(matrix == null || matrix.length == 0)
         	return 0;
-        else if(matrix[0].length == 0)
+        else if(matrix[0] == null || matrix[0].length == 0)
         	return 0;
         else{
         	int rows = matrix.length;
@@ -18,13 +20,29 @@ public class MaximalRectangle {
         			else
         				height[j] += 1;
         		}
-        		max = Math.max(max, largestRectangleArea(height));
+        		max = Math.max(max, largestRectangleAreaFancy(height));
         	}
         	return max;
         }
     }
     
-    private int largestRectangleArea(int[] heights) {
+    private int largestRectangleAreaFancy(int[] heights) {
+    	Stack<Integer> stack = new Stack<>();
+    	int maxArea = 0;
+    	for(int i = 0; i <= heights.length; i++){
+    		int curVal = (i == heights.length) ? -1 : heights[i];
+    		while(!stack.isEmpty() && heights[stack.peek()] > curVal){
+    			int h = heights[stack.peek()];
+    			stack.pop();
+    			int w = stack.isEmpty() ? i : (i - stack.peek() - 1);
+    			maxArea = Math.max(maxArea, h * w);
+    		}
+    		stack.push(i);
+    	}
+    	return maxArea;
+    }
+    
+    private int largestRectangleAreaOld(int[] heights) {
         int areaGlobal = 0;
         // iterates through every right boundary
         for(int i = 0; i < heights.length; i++){
